@@ -20,5 +20,5 @@ export function logMessage(item: LogItem) {
 
     // console.error(item.error);
 
-    console.dir(item);
+    // console.dir(item);
 }

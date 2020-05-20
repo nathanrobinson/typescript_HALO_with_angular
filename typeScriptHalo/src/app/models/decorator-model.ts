@@ -1,22 +1,24 @@
-import { Title } from '../decorators/title';
-import { OnChange } from '../decorators/on-change';
+import { Log } from '../decorators/log';
 
-// @Title('I Have a Title!')
+const counter = { counter: 0 };
+
+@Log('first class', counter)
+@Log('second class', counter)
 export class WithDecorator {
-    private _title: string;
-    set title(value: string) {
-        if (this._title !== value) {
-            this._title = value;
-            this.onTitleChanged(value);
-        }
-    }
-    get title(): string {
-        return this._title;
+
+    @Log('first accessor', counter)
+    @Log('second accessor', counter)
+    get helloWorldText(): string {
+        return this.text;
     }
 
-    // @OnChange<WithDecorator>(x => x.onTitleChanged(x.title)) title: string;
+    @Log('first property', counter)
+    @Log('second property', counter)
+    text = 'Hello, world!';
 
-    onTitleChanged(title: string) {
-        console.log(`Title Changed to ${title}`);
+    @Log('first method', counter)
+    @Log('second method', counter)
+    getHelloWorldText(): string {
+        return this.text;
     }
 }
